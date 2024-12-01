@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        Crea un form che contenga un campo di testo per il nome e un pulsante di invio.
+    </head>
+    <body>
+        <h2>HTML Forms</h2>
+        <form>
+            <label>Cognome:</label><br>
+            <input type="text"><br>
+            <label>Nome:</label><br>
+            <input type="text"><br>
+            <input type="submit" value="Invio">
+        </form> 
+    </body>
+</html>
+
