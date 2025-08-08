@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rob04-os"
+version = "0.0.1"
+description = "Rob04 OS developer CLI and docs"
+authors = [{ name = "Rob04" }]
+readme = "README.md"
+requires-python = ">=3.9"
+keywords = ["os", "cli", "rob04"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+
+[project.scripts]
+rob04 = "rob04.__main__:main"
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q"
