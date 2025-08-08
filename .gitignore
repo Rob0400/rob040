@@ -1,0 +1,11 @@
+node_modules
+.dist
+.next
+.build
+coverage
+.env
+.env.*
+uploads
+.prisma
+sqlite
+.DS_Store
