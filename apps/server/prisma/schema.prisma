@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String      @id @default(cuid())
+  email       String      @unique
+  displayName String
+  avatarUrl   String?
+  bio         String?
+  publicKey   String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  messages    Message[]
+  chats       ChatMember[]
+  calls       CallLog[]   @relation("Caller")
+  receivedCalls CallLog[] @relation("Callee")
+  media       Media[]
+}
+
+model Chat {
+  id        String       @id @default(cuid())
+  isGroup   Boolean      @default(false)
+  members   ChatMember[]
+  messages  Message[]
+  calls     CallLog[]
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+model ChatMember {
+  id     String @id @default(cuid())
+  userId String
+  chatId String
+  role   String @default("member")
+
+  user User @relation(fields: [userId], references: [id])
+  chat Chat @relation(fields: [chatId], references: [id])
+
+  @@unique([userId, chatId])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  chatId    String
+  senderId  String
+  type      String
+  text      String?
+  mediaUrl  String?
+  createdAt DateTime @default(now())
+
+  chat   Chat @relation(fields: [chatId], references: [id])
+  sender User @relation(fields: [senderId], references: [id])
+}
+
+model CallLog {
+  id        String   @id @default(cuid())
+  chatId    String?
+  callerId  String
+  calleeId  String?
+  startedAt DateTime @default(now())
+  endedAt   DateTime?
+  type      String
+  status    String
+
+  chat   Chat? @relation(fields: [chatId], references: [id])
+  caller User  @relation("Caller", fields: [callerId], references: [id])
+  callee User? @relation("Callee", fields: [calleeId], references: [id])
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  url       String
+  type      String
+  ownerId   String
+  createdAt DateTime @default(now())
+
+  owner User @relation(fields: [ownerId], references: [id])
+}

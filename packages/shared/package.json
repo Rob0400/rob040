@@ -1,0 +1,14 @@
+{
+  "name": "@rob04/shared",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts --sourcemap",
+    "dev": "tsup src/index.ts --format esm --dts --watch"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5"
+  }
+}
