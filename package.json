@@ -1,0 +1,31 @@
+{
+  "name": "rob04-connect",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "echo Use: npm run dev:web and dev:server",
+    "dev:web": "npm run dev --prefix apps/web",
+    "dev:server": "npm run dev --prefix apps/server",
+    "build": "npm run build --prefix apps/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rob0400/rob040.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rob0400/rob040/issues"
+  },
+  "homepage": "https://github.com/Rob0400/rob040#readme",
+  "description": "",
+  "private": "true",
+  "workspaces": [
+    "apps/*",
+    "=packages/*",
+    "apps/*",
+    "packages/*"
+  ]
+}
